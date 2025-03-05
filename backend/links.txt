@@ -1,0 +1,9 @@
+http://localhost:5000/api/users/register    //register
+http://localhost:5000/api/users/login       //login
+http://localhost:5000/api/users/me          //get user
+http://localhost:5000/api/users/logout      //logout
+http://localhost:5000/api/users/logoutall   //logout all
+
+http://localhost:5000/api/projects          //get all projects  
+http://localhost:5000/api/projects/1        //get project by id
+
