@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -25,7 +26,7 @@ export default function Home() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink href="/donate" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Donate
+                Donations
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -46,7 +47,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-grow container mx-auto px-4 py-8">
         <section className="text-center">
-          <h1 className="text-4xl font-bold mb-4 dark:text-white">Crowdfunding Platform</h1>
+          <h1 className="text-4xl font-bold mb-4 dark:text-white">GiveHopeNow</h1>
           <p className="text-lg mb-8 dark:text-gray-300">
             Support innovative projects and make a difference
           </p>
@@ -68,11 +69,11 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 dark:bg-gray-900 text-white py-4">
+      <Footer className="bg-gray-800 dark:bg-gray-900 text-white py-4">
         <div className="container mx-auto px-4 text-center">
           <p>&copy; 2023 Crowdfunding Platform. All rights reserved.</p>
         </div>
-      </footer>
+      </Footer>
     </div>
   );
 }
