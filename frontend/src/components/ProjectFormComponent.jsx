@@ -87,7 +87,3 @@ export default function ProjectFormComponent({ onProjectCreated }) {
 ProjectFormComponent.propTypes = {
   onProjectCreated: PropTypes.func.isRequired
 };
-
-ProjectFormComponent.defaultProps = {
-  onProjectCreated: () => {} // No-op function as default
-};

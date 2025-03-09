@@ -103,7 +103,6 @@ export default function Dashboard() {
   );
 }
 
-// import { createProject } from '../projectService';
 function ProjectFormComponent({ onProjectCreated }) {
   const [formData, setFormData] = useState({
     title: '',
