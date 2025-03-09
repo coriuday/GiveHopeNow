@@ -9,14 +9,15 @@ let clientSecret = process.env.PAYPAL_CLIENT_SECRET;
 let environment = new paypal.core.SandboxEnvironment(clientId, clientSecret);
 let paypalClient = new paypal.core.PayPalHttpClient(environment);
 
-// Razorpay Configuration
+/* Razorpay Configuration - Commented for future use
 const Razorpay = require('razorpay');
 const razorpayClient = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
+*/
 
 module.exports = {
   paypalClient,
-  razorpayClient,
+  // razorpayClient, // Uncomment when implementing Razorpay
 };
