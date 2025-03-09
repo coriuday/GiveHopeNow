@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './Routes/Login';
 import Donations from './Routes/Donations';
 import SignUp from './Routes/SignUp';
-import AboutUs from './services/AboutUs';
+import AboutUs from './components/AboutUs';
 import './index.css';
 
 function App() {
