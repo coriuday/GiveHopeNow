@@ -6,7 +6,10 @@ import { Moon, Sun } from 'lucide-react';
 import { ThemeContext } from '../../App';
 import { useContext } from 'react';
 
-const NavigationMenu = React.forwardRef(({ className, children, ...props }, ref) => (
+const NavigationMenu = React.forwardRef(({ className, children, isAuthenticated, onLogout, ...props }, ref) => (
+
+
+
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={className}
@@ -20,6 +23,16 @@ NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 NavigationMenu.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  isAuthenticated: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
+
+
+
+
+
+
+
+
 };
 
 const NavigationMenuList = React.forwardRef(({ className, children, ...props }, ref) => (

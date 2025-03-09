@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../Services/api';
+import { AuthContext } from '../AuthContext';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic
-    navigate('/dashboard');
+    try {
+      const response = await loginUser({ email, password });
+      login(response.token);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.msg || 'An error occurred');
+    }
   };
 
   return (
@@ -54,6 +64,8 @@ export default function Login() {
               />
             </div>
           </div>
+
+          {error && <div className="text-red-500 text-center">{error}</div>}
 
           <div>
             <button

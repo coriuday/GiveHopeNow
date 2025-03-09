@@ -1,4 +1,5 @@
 import Footer from './Footer';
+import { useContext } from 'react';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,17 +7,26 @@ import {
   navigationMenuTriggerStyle
 } from '../components/ui/navigation-menu';
 import { ThemeToggle } from '../components/ui/navigation-menu';
+import reactLogo from '../assets/react.svg'; // Importing the SVG image
+import { AuthContext } from '../AuthContext'; // Importing AuthContext
 
 export default function Home() {
+  const { isAuthenticated, logout } = useContext(AuthContext); // Destructure isAuthenticated and logout from AuthContext
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header with Navigation */}
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <NavigationMenu className="flex space-x-4">
+          <NavigationMenu className="flex space-x-4" isAuthenticated={isAuthenticated} onLogout={logout}>
             <NavigationMenuItem>
               <NavigationMenuLink href="/" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
                 Home
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="#" onClick={logout} className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                Logout
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -51,6 +61,7 @@ export default function Home() {
           <p className="text-lg mb-8 dark:text-gray-300">
             Support innovative projects and make a difference
           </p>
+          <img src={reactLogo} alt="React Logo" className="mx-auto mb-4" /> {/* Adding the image */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-3 dark:text-white">Discover Projects</h2>
