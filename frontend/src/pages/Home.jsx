@@ -18,37 +18,45 @@ export default function Home() {
       {/* Header with Navigation */}
       <header className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <NavigationMenu className="flex space-x-4" isAuthenticated={isAuthenticated} onLogout={logout}>
+          <NavigationMenu className="flex space-x-4">
             <NavigationMenuItem>
               <NavigationMenuLink href="/" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
                 Home
               </NavigationMenuLink>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="#" onClick={logout} className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Logout
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/dashboard" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Dashboard
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/donate" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Donations
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/login" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Login
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/signup" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
-                Sign Up
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            
+            {isAuthenticated ? (
+              <>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/dashboard" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                    Dashboard
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/donate" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                    Donations
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#" onClick={logout} className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                    Logout
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </>
+            ) : (
+              <>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/login" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                    Login
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/signup" className={`${navigationMenuTriggerStyle()} dark:text-white`}>
+                    Sign Up
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </>
+            )}
           </NavigationMenu>
           <ThemeToggle />
         </div>

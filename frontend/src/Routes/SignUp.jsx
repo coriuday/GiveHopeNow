@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/api';
+import { AuthContext } from '../AuthContext';
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle signup logic
-    navigate('/dashboard');
+    try {
+      const response = await registerUser({ name, email, password });
+      // After successful registration, log the user in
+      login(response.token);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.msg || 'Registration failed. Please try again.');
+    }
   };
 
   return (
@@ -22,6 +32,9 @@ export default function SignUp() {
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="text-red-500 text-center text-sm">{error}</div>
+          )}
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="full-name" className="sr-only">
