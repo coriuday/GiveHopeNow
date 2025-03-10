@@ -1,0 +1,85 @@
+// Do not import Tailwind directly in SCSS as it causes issues with Tailwind v4
+// The index.css is already imported in the main TypeScript entry point
+
+@use "sass:color";
+
+// SASS Variables
+$primary-color: #3490dc;
+$secondary-color: #ffed4a;
+$spacing-unit: 1rem;
+
+// Custom styles with SASS features 
+.custom-container {
+  padding: $spacing-unit * 2;
+  
+  // Nesting (SASS feature)
+  &__header {
+    color: $primary-color;
+    font-weight: bold;
+    
+    // Use regular classes instead of @apply
+    &--large {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid $secondary-color;
+    }
+  }
+  
+  // More nesting
+  &__content {
+    margin-top: $spacing-unit;
+    
+    // Regular CSS classes instead of @apply
+    p {
+      color: #374151;
+      line-height: 1.625;
+      margin-bottom: $spacing-unit;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Example of a mixin (SASS feature)
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Using the mixin
+.centered-element {
+  @include flex-center;
+  height: 200px;
+  background-color: rgba($primary-color, 0.1);
+  
+  // SASS math operation
+  padding: $spacing-unit * 1.5;
+  
+  // Regular CSS classes instead of @apply
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+// Dark mode support with SASS and Tailwind
+.dark {
+  .custom-container {
+    background-color: #1a202c;
+    
+    &__header {
+      color: color.adjust($primary-color, $lightness: 15%);
+    }
+    
+    &__content {
+      p {
+        color: #d1d5db;
+      }
+    }
+  }
+  
+  .centered-element {
+    background-color: rgba($primary-color, 0.2);
+  }
+} 
